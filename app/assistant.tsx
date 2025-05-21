@@ -1,14 +1,14 @@
 "use client";
 
-import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
-import { Thread } from "@/components/assistant-ui/thread";
+import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Thread } from "@/components/assistant-ui/thread";
 
-export const Assistant = () => {
+export function Assistant() {
   const runtime = useChatRuntime({
     api: "/api/chat",
   });
@@ -37,9 +37,13 @@ export const Assistant = () => {
               </BreadcrumbList>
             </Breadcrumb>
           </header>
-          <Thread />
+          <div className="flex h-[calc(100vh-8rem)] flex-col rounded-lg border bg-background shadow-sm">
+            <div className="flex-1 overflow-y-auto p-4">
+              <Thread />
+            </div>
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </AssistantRuntimeProvider>
-  );
-};
+  )
+}
